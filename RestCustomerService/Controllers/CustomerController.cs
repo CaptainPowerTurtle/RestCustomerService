@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp;
 using RestCustomerService.Model;
 
 namespace RestCustomerService.Controllers
@@ -13,7 +15,8 @@ namespace RestCustomerService.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private static List<Customer> cList = new List<Customer>();
+        private static List<Customer> cList = new List<Customer>(nextid = 4);
+        private static int nextid = 0;
 
         // GET: api/Customer
         [HttpGet]
